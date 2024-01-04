@@ -44,4 +44,4 @@ export const lightTheme: ThemeType = {
   },
 };
 
-// console.log(lightTheme);
+console.log(lightTheme);

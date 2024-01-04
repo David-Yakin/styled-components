@@ -1,0 +1,184 @@
+tsx file
+
+{
+  "React Hooks Component": {
+    "prefix": "_rhtc",
+    "body": [
+      "import { FC } from \"react\";",
+      "",
+      "type ${1:ComponentName}Props = {$2 ${3: :type}};",
+      "",
+      "const ${1:ComponentName}: FC<${1:ComponentName}Props> = ({$2}) => {",
+      "  return <$4>$5</>;",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React Hooks TS Component"
+  },
+  "React Hooks No Props Component": {
+    "prefix": "_rhnpc",
+    "body": [
+      "const ${1:ComponentName} = () => {",
+      "  return <$2>$3</>;",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React Hooks No Props Component"
+  },
+  "React Hooks State Component With useEffect": {
+    "prefix": "_rhsec",
+    "body": [
+      "import { FC, useState, useEffect } from \"react\";",
+      "",
+      "type ${1:ComponentName}Props = {$2 ${3: :type}};",
+      "",
+      "const ${1:ComponentName}: FC<${1:ComponentName}Props> = ({$2}) => {",
+      "    const [${4:parameter}, set${4:parameter}]= useState<${6:type}>($5)",
+      "    useEffect(()=>{",
+      "        $9",
+      "    },[$10])",
+      "   return <$7>$8</>;",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React Hooks State Component With useEffect"
+  },
+  "React Hooks State Component": {
+    "prefix": "_rhsc",
+    "body": [
+      "import { FC, useState } from \"react\";",
+      "",
+      "type ${1:ComponentName}Props = {$2 ${3: :type}};",
+      "",
+      "const ${1:ComponentName}: FC<${1:ComponentName}Props> = ({$2}) => {",
+      "    const [${4:parameter}, set${4:parameter}]= useState<${6:type}>($5)",
+      "   return <$7>$8</>;",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "React Hooks State Component"
+  },
+  "Create React Context": {
+    "prefix": "_crc",
+    "body": [
+      "import {",
+      "  useState,",
+      "  useContext,",
+      "  ReactNode,",
+      "  SetStateAction,",
+      "  Dispatch,",
+      "  FC,",
+      "  createContext,",
+      "} from \"react\";",
+      "",
+      "type ContextValue = {",
+      "  ${2:name}: ${3:string} | null;",
+      "  set${4:Name}: Dispatch<SetStateAction<${3:string} | null>>;",
+      "};",
+      "",
+      "const ${1:Name}Context = createContext<null | ContextValue>(null);",
+      "const { Provider } = ${1:Name}Context;",
+      "",
+      "type ${1:Name}ProviderProps = {",
+      "  children: ReactNode;",
+      "};",
+      "",
+      "const ${1:Name}Provider: FC<${1:Name}ProviderProps> = ({ children }) => {",
+      "  const [${2:name}, set${4:Name}] = useState<${3:string} | null>(null);",
+      "",
+      "  return <Provider value={{ ${2:name}, set${4:Name} }}>{children}</Provider>;",
+      "};",
+      "",
+      "export const use${1:Name} = () => {",
+      "  const context = useContext(${1:Name}Context);",
+      "  if (!context) throw new Error(\"use${1:Name} must be used within a ${1:Name}Provider\");",
+      "  return context;",
+      "};",
+      "",
+      "export default ${1:Name}Provider;",
+      ""
+    ],
+    "description": "Create React Context"
+  }
+}
+
+
+ts file
+
+{
+	"async arrow function": {
+		"prefix": "_aaf",
+		"body": [
+		  "export const ${1: getData} = async ($2) => {",
+		  "  try {",
+		  "    const ${3:data} = await ${4: getData}()",
+		  "    return ${3:data}",
+		  "  } catch (error) {",
+		  "    return Promise.reject(error);",
+		  "  }",
+		  "};"
+		],
+		"description": "async arrow function"
+	  },
+	  "Redux Store": {
+		"prefix": "_store",
+		"body": [
+		  "import { configureStore } from \"@reduxjs/toolkit\";",
+		  "",
+		  "export const store = configureStore({",
+		  "  reducer: {},",
+		  "});",
+		  "",
+		  "export type RootState = ReturnType<typeof store.getState>;",
+		  "export type AppDispatch = typeof store.dispatch;",
+		  ""
+		],
+		"description": "Redux Store"
+	  },
+	  "Redux Slice": {
+		"prefix": "_slice",
+		"body": [
+		  "import { createSlice } from \"@reduxjs/toolkit\";",
+		  "import type { PayloadAction } from \"@reduxjs/toolkit\";",
+		  "",
+		  "interface InitialState {",
+		  "  ${1:value}: ${2:number};",
+		  "}",
+		  "",
+		  "const initialState: InitialState = {",
+		  "  ${1:value}: ${3:0},",
+		  "};",
+		  "",
+		  "export const ${4:counter}Slice = createSlice({",
+		  "  name: \"${4:counter}\",",
+		  "  initialState,",
+		  "  reducers: {",
+		  "    ${5:increment}: (state, action: PayloadAction<${2:number}>) => {",
+		  "      $6",
+		  "    },",
+		  "  },",
+		  "});",
+		  "",
+		  "export const { ${5:increment}} = ${4:counter}Slice.actions;",
+		  "export default ${4:counter}Slice.reducer;",
+		  ""
+		],
+		"description": "Redux Slice"
+	  },
+	  "redux hooks": {
+		"prefix": "_reduxHooks",
+		"body": [
+		  "import { TypedUseSelectorHook, useDispatch, useSelector } from \"react-redux\";",
+		  "import type { RootState, AppDispatch } from \"./store\";",
+		  "",
+		  "export const useAppDispatch = () => useDispatch<AppDispatch>();",
+		  "export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;",
+		  ""
+		],
+		"description": "redux hooks"
+	  }
+}
